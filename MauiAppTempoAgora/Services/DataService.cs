@@ -1,5 +1,6 @@
 ﻿using MauiAppTempoAgora.Models;
 using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace MauiAppTempoAgora.Services
 {
@@ -18,7 +19,7 @@ namespace MauiAppTempoAgora.Services
             {
                 HttpResponseMessage resp = await client.GetAsync(url);
 
-                if (resp.IsSuccessStatusCode)
+                if (resp.IsSuccessStatusCode && resp.StatusCode != HttpStatusCode.NotFound)
                 {
                     string json = await resp.Content.ReadAsStringAsync();
 

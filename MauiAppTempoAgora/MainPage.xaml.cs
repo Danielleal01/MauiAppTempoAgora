@@ -16,7 +16,6 @@ namespace MauiAppTempoAgora
         {
             try
             {
-
                 if (!string.IsNullOrEmpty(txt_cidade.Text))
                 {
                     Tempo? t = await DataService.GetPrevisao(txt_cidade.Text);
@@ -39,7 +38,8 @@ namespace MauiAppTempoAgora
                     }
                     else
                     {
-                        lbl_res.Text = "Cidade não encontrada.";
+                        lbl_res.Text = new HttpResponseMessage().ToString();
+                        await DisplayAlert("Ops...", "Cidade não encontrada, verifique se não houve algum erro de digitação.", "OK");
                     }
                 }
                 else
